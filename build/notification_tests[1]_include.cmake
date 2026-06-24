@@ -1,5 +1,0 @@
-if(EXISTS "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests[1]_tests.cmake")
-  include("/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests[1]_tests.cmake")
-else()
-  add_test(notification_tests_NOT_BUILT notification_tests_NOT_BUILT)
-endif()

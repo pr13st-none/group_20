@@ -1,3 +1,0 @@
-/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/benchmark-subbuild/CMakeFiles/benchmark-populate.dir
-/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/benchmark-subbuild/CMakeFiles/edit_cache.dir
-/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/benchmark-subbuild/CMakeFiles/rebuild_cache.dir
