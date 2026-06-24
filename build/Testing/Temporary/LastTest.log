@@ -1,0 +1,354 @@
+Start testing: Jun 23 22:40 MSK
+----------------------------------------------------------
+1/13 Testing: NotificationServiceTest.AddThenGetReturnsNotification
+1/13 Test: NotificationServiceTest.AddThenGetReturnsNotification
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.AddThenGetReturnsNotification" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.AddThenGetReturnsNotification" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.AddThenGetReturnsNotification
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.AddThenGetReturnsNotification
+[       OK ] NotificationServiceTest.AddThenGetReturnsNotification (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.AddThenGetReturnsNotification" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.AddThenGetReturnsNotification" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/13 Testing: NotificationServiceTest.DueReturnsReadyNotification
+2/13 Test: NotificationServiceTest.DueReturnsReadyNotification
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.DueReturnsReadyNotification" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.DueReturnsReadyNotification" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.DueReturnsReadyNotification
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.DueReturnsReadyNotification
+[       OK ] NotificationServiceTest.DueReturnsReadyNotification (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.DueReturnsReadyNotification" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.DueReturnsReadyNotification" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/13 Testing: NotificationServiceTest.FutureNotificationIsNotDue
+3/13 Test: NotificationServiceTest.FutureNotificationIsNotDue
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.FutureNotificationIsNotDue" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.FutureNotificationIsNotDue" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.FutureNotificationIsNotDue
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.FutureNotificationIsNotDue
+[       OK ] NotificationServiceTest.FutureNotificationIsNotDue (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.FutureNotificationIsNotDue" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.FutureNotificationIsNotDue" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/13 Testing: NotificationServiceTest.CancelHidesNotificationFromDue
+4/13 Test: NotificationServiceTest.CancelHidesNotificationFromDue
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.CancelHidesNotificationFromDue" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.CancelHidesNotificationFromDue" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.CancelHidesNotificationFromDue
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.CancelHidesNotificationFromDue
+[       OK ] NotificationServiceTest.CancelHidesNotificationFromDue (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.CancelHidesNotificationFromDue" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.CancelHidesNotificationFromDue" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/13 Testing: NotificationServiceTest.MarkSentHidesNotificationFromDue
+5/13 Test: NotificationServiceTest.MarkSentHidesNotificationFromDue
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.MarkSentHidesNotificationFromDue" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.MarkSentHidesNotificationFromDue" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.MarkSentHidesNotificationFromDue
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.MarkSentHidesNotificationFromDue
+[       OK ] NotificationServiceTest.MarkSentHidesNotificationFromDue (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.MarkSentHidesNotificationFromDue" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.MarkSentHidesNotificationFromDue" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/13 Testing: NotificationServiceTest.LimitRestrictsDueResult
+6/13 Test: NotificationServiceTest.LimitRestrictsDueResult
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.LimitRestrictsDueResult" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.LimitRestrictsDueResult" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.LimitRestrictsDueResult
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.LimitRestrictsDueResult
+[       OK ] NotificationServiceTest.LimitRestrictsDueResult (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.LimitRestrictsDueResult" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.LimitRestrictsDueResult" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/13 Testing: NotificationServiceTest.SendAtBoundaryIsInclusive
+7/13 Test: NotificationServiceTest.SendAtBoundaryIsInclusive
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.SendAtBoundaryIsInclusive" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.SendAtBoundaryIsInclusive" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.SendAtBoundaryIsInclusive
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.SendAtBoundaryIsInclusive
+[       OK ] NotificationServiceTest.SendAtBoundaryIsInclusive (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.SendAtBoundaryIsInclusive" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.SendAtBoundaryIsInclusive" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/13 Testing: NotificationServiceTest.ConcurrentAddSentAndDueIsSafe
+8/13 Test: NotificationServiceTest.ConcurrentAddSentAndDueIsSafe
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.ConcurrentAddSentAndDueIsSafe" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.ConcurrentAddSentAndDueIsSafe" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.ConcurrentAddSentAndDueIsSafe
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.ConcurrentAddSentAndDueIsSafe
+[       OK ] NotificationServiceTest.ConcurrentAddSentAndDueIsSafe (7 ms)
+[----------] 1 test from NotificationServiceTest (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.ConcurrentAddSentAndDueIsSafe" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.ConcurrentAddSentAndDueIsSafe" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/13 Testing: NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId
+9/13 Test: NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId
+[       OK ] NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.DueOrderingUsesPriorityCreatedAtAndId" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/13 Testing: NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries
+10/13 Test: NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries
+[       OK ] NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.DuplicateIdDoesNotCreateDuplicateDueEntries" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/13 Testing: NotificationServiceTest.CancelledIdCanBeScheduledAgain
+11/13 Test: NotificationServiceTest.CancelledIdCanBeScheduledAgain
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.CancelledIdCanBeScheduledAgain" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.CancelledIdCanBeScheduledAgain" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.CancelledIdCanBeScheduledAgain
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.CancelledIdCanBeScheduledAgain
+[       OK ] NotificationServiceTest.CancelledIdCanBeScheduledAgain (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.CancelledIdCanBeScheduledAgain" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.CancelledIdCanBeScheduledAgain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/13 Testing: NotificationServiceTest.SentIdCanBeScheduledAgain
+12/13 Test: NotificationServiceTest.SentIdCanBeScheduledAgain
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.SentIdCanBeScheduledAgain" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.SentIdCanBeScheduledAgain" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.SentIdCanBeScheduledAgain
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.SentIdCanBeScheduledAgain
+[       OK ] NotificationServiceTest.SentIdCanBeScheduledAgain (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.SentIdCanBeScheduledAgain" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.SentIdCanBeScheduledAgain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/13 Testing: NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId
+13/13 Test: NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId
+Command: "/Users/none/Downloads/itmo_cpp_notification_service-main 2/build/notification_tests" "--gtest_filter=NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId" "--gtest_also_run_disabled_tests"
+Directory: /Users/none/Downloads/itmo_cpp_notification_service-main 2/build
+"NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId" start time: Jun 23 22:40 MSK
+Output:
+----------------------------------------------------------
+Running main() from /Users/none/Downloads/itmo_cpp_notification_service-main 2/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from NotificationServiceTest
+[ RUN      ] NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId
+[       OK ] NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId (0 ms)
+[----------] 1 test from NotificationServiceTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId" end time: Jun 23 22:40 MSK
+"NotificationServiceTest.DueOrderingUsesCreatedAtBeforeId" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jun 23 22:40 MSK

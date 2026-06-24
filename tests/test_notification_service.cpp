@@ -16,20 +16,19 @@ using itmo_notification::NotificationStatus;
 
 namespace {
 
-Notification makeNotification(std::string id,
-                              std::int64_t send_at,
-                              int priority = 0,
-                              std::int64_t created_at = 0) {
+Notification makeNotification(
+    std::string id, std::int64_t send_at, int priority = 0,
+    std::int64_t created_at = 0) {
     Notification n;
-    n.id            = std::move(id);
-    n.user_id       = "u-1";
-    n.channel       = "email";
-    n.recipient     = "user@example.com";
+    n.id = std::move(id);
+    n.user_id = "u-1";
+    n.channel = "email";
+    n.recipient = "user@example.com";
     n.template_name = "payment_reminder";
-    n.payload       = R"({"order_id":"o-1"})";
-    n.send_at       = send_at;
-    n.priority      = priority;
-    n.created_at    = created_at;
+    n.payload = R"({"order_id":"o-1"})";
+    n.send_at = send_at;
+    n.priority = priority;
+    n.created_at = created_at;
     return n;
 }
 
@@ -114,11 +113,9 @@ TEST(NotificationServiceTest, ConcurrentAddSentAndDueIsSafe) {
     for (int t = 0; t < 4; ++t) {
         threads.emplace_back([&, t]() {
             for (int i = 0; i < kPerThread; ++i) {
-                service.add(makeNotification("t" + std::to_string(t) + "-" +
-                                                 std::to_string(i),
-                                             100 + (i % 20),
-                                             i % 5,
-                                             i));
+                service.add(makeNotification(
+                    "t" + std::to_string(t) + "-" + std::to_string(i),
+                    100 + (i % 20), i % 5, i));
             }
         });
     }
@@ -128,15 +125,16 @@ TEST(NotificationServiceTest, ConcurrentAddSentAndDueIsSafe) {
         threads.emplace_back([&]() {
             for (int i = 0; i < kPerThread; ++i) {
                 const auto due = service.due(200, 25);
-                total_seen.fetch_add(static_cast<int>(due.size()),
-                                     std::memory_order_relaxed);
+                total_seen.fetch_add(
+                    static_cast<int>(due.size()), std::memory_order_relaxed);
             }
         });
     }
     for (int t = 0; t < 2; ++t) {
         threads.emplace_back([&, t]() {
             for (int i = 0; i < kPerThread; ++i) {
-                service.markSent("t" + std::to_string(t) + "-" + std::to_string(i));
+                service.markSent(
+                    "t" + std::to_string(t) + "-" + std::to_string(i));
             }
         });
     }
@@ -149,10 +147,10 @@ TEST(NotificationServiceTest, ConcurrentAddSentAndDueIsSafe) {
 }
 
 // -----------------------------------------------------------------------------
-// Помечены DISABLED_ — должны включиться и проходить после доработки сервиса.
+// Ранее отключённые тесты теперь включены и должны проходить.
 // -----------------------------------------------------------------------------
 
-TEST(NotificationServiceTest, DISABLED_DueOrderingUsesPriorityCreatedAtAndId) {
+TEST(NotificationServiceTest, DueOrderingUsesPriorityCreatedAtAndId) {
     NotificationService service;
     service.add(makeNotification("a-low", 100, 1, 10));
     service.add(makeNotification("z-high", 100, 9, 20));
@@ -167,7 +165,7 @@ TEST(NotificationServiceTest, DISABLED_DueOrderingUsesPriorityCreatedAtAndId) {
     EXPECT_EQ(due[3].id, "a-low");
 }
 
-TEST(NotificationServiceTest, DISABLED_DuplicateIdDoesNotCreateDuplicateDueEntries) {
+TEST(NotificationServiceTest, DuplicateIdDoesNotCreateDuplicateDueEntries) {
     NotificationService service;
     service.add(makeNotification("n1", 100, 1, 1));
     service.add(makeNotification("n1", 100, 9, 2));
@@ -178,7 +176,7 @@ TEST(NotificationServiceTest, DISABLED_DuplicateIdDoesNotCreateDuplicateDueEntri
     EXPECT_EQ(due[0].priority, 1);
 }
 
-TEST(NotificationServiceTest, DISABLED_CancelledIdCanBeScheduledAgain) {
+TEST(NotificationServiceTest, CancelledIdCanBeScheduledAgain) {
     NotificationService service;
     service.add(makeNotification("n1", 100));
     ASSERT_TRUE(service.cancel("n1"));
@@ -190,7 +188,7 @@ TEST(NotificationServiceTest, DISABLED_CancelledIdCanBeScheduledAgain) {
     EXPECT_EQ(due[0].id, "n1");
 }
 
-TEST(NotificationServiceTest, DISABLED_SentIdCanBeScheduledAgain) {
+TEST(NotificationServiceTest, SentIdCanBeScheduledAgain) {
     NotificationService service;
     service.add(makeNotification("n1", 100));
     ASSERT_TRUE(service.markSent("n1"));
@@ -202,7 +200,7 @@ TEST(NotificationServiceTest, DISABLED_SentIdCanBeScheduledAgain) {
     EXPECT_EQ(due[0].id, "n1");
 }
 
-TEST(NotificationServiceTest, DISABLED_DueOrderingUsesCreatedAtBeforeId) {
+TEST(NotificationServiceTest, DueOrderingUsesCreatedAtBeforeId) {
     NotificationService service;
     service.add(makeNotification("z-old", 100, 5, 1));
     service.add(makeNotification("a-new", 100, 5, 2));

@@ -16,7 +16,7 @@
 namespace {
 
 constexpr const char* kDefaultHost = "0.0.0.0";
-constexpr int         kDefaultPort = 8080;
+constexpr int kDefaultPort = 8080;
 
 using json = nlohmann::json;
 
@@ -39,15 +39,15 @@ std::string statusToString(itmo_notification::NotificationStatus status) {
 
 itmo_notification::Notification parseNotification(const json& j) {
     itmo_notification::Notification n;
-    n.id            = j.value("id", std::string{});
-    n.user_id       = j.value("user_id", std::string{});
-    n.channel       = j.value("channel", std::string{});
-    n.recipient     = j.value("recipient", std::string{});
+    n.id = j.value("id", std::string{});
+    n.user_id = j.value("user_id", std::string{});
+    n.channel = j.value("channel", std::string{});
+    n.recipient = j.value("recipient", std::string{});
     n.template_name = j.value("template", std::string{});
-    n.payload       = j.contains("payload") ? j.at("payload").dump() : "{}";
-    n.send_at       = j.value("send_at", std::int64_t{0});
-    n.priority      = j.value("priority", 0);
-    n.created_at    = j.value("created_at", unixNow());
+    n.payload = j.contains("payload") ? j.at("payload").dump() : "{}";
+    n.send_at = j.value("send_at", std::int64_t{0});
+    n.priority = j.value("priority", 0);
+    n.created_at = j.value("created_at", unixNow());
     return n;
 }
 
@@ -89,86 +89,103 @@ void writeJson(httplib::Response& res, int status, const json& body) {
 
 int main(int /*argc*/, char** /*argv*/) {
     itmo_notification::NotificationService service;
-    httplib::Server                        server;
+    httplib::Server server;
 
-    server.Get("/health", [](const httplib::Request& /*req*/, httplib::Response& res) {
-        writeJson(res, 200, {{"ok", true}});
-    });
+    server.Get(
+        "/health",
+        [](const httplib::Request& /*req*/, httplib::Response& res) {
+            writeJson(res, 200, {{"ok", true}});
+        });
 
-    server.Post("/v1/notifications", [&](const httplib::Request& req,
-                                          httplib::Response& res) {
-        try {
-            auto notification = parseNotification(json::parse(req.body));
-            if (notification.id.empty() || notification.user_id.empty() ||
-                notification.channel.empty()) {
-                writeJson(res, 400, {{"error", "id, user_id and channel are required"}});
+    server.Post(
+        "/v1/notifications",
+        [&](const httplib::Request& req, httplib::Response& res) {
+            try {
+                auto notification = parseNotification(json::parse(req.body));
+                if (notification.id.empty() || notification.user_id.empty() ||
+                    notification.channel.empty()) {
+                    writeJson(
+                        res, 400,
+                        {{"error", "id, user_id and channel are required"}});
+                    return;
+                }
+                service.add(std::move(notification));
+                writeJson(res, 201, {{"ok", true}});
+            } catch (const std::exception& e) {
+                writeJson(
+                    res, 400,
+                    {{"error", "bad json"}, {"detail", e.what()}});
+            }
+        });
+
+    server.Get(
+        R"(/v1/notifications/([^/]+))",
+        [&](const httplib::Request& req, httplib::Response& res) {
+            const std::string id = req.matches[1].str();
+            const auto n = service.get(id);
+            if (!n.has_value()) {
+                writeJson(res, 404, {{"error", "notification not found"}});
                 return;
             }
-            service.add(std::move(notification));
-            writeJson(res, 201, {{"ok", true}});
-        } catch (const std::exception& e) {
-            writeJson(res, 400, {{"error", "bad json"}, {"detail", e.what()}});
-        }
-    });
+            writeJson(res, 200, notificationToJson(*n));
+        });
 
-    server.Get(R"(/v1/notifications/([^/]+))", [&](const httplib::Request& req,
-                                                    httplib::Response& res) {
-        const std::string id = req.matches[1].str();
-        const auto n = service.get(id);
-        if (!n.has_value()) {
-            writeJson(res, 404, {{"error", "notification not found"}});
-            return;
-        }
-        writeJson(res, 200, notificationToJson(*n));
-    });
-
-    server.Delete(R"(/v1/notifications/([^/]+))", [&](const httplib::Request& req,
-                                                       httplib::Response& res) {
-        const std::string id = req.matches[1].str();
-        if (!service.cancel(id)) {
-            writeJson(res, 404, {{"error", "notification not found"}});
-            return;
-        }
-        res.status = 204;
-    });
-
-    server.Post(R"(/v1/notifications/([^/]+)/sent)", [&](const httplib::Request& req,
-                                                          httplib::Response& res) {
-        const std::string id = req.matches[1].str();
-        if (!service.markSent(id)) {
-            writeJson(res, 404, {{"error", "notification not found or cancelled"}});
-            return;
-        }
-        writeJson(res, 200, {{"ok", true}});
-    });
-
-    server.Get("/v1/due", [&](const httplib::Request& req, httplib::Response& res) {
-        std::int64_t now = unixNow();
-        std::size_t limit = 100;
-        try {
-            if (req.has_param("now")) {
-                now = static_cast<std::int64_t>(std::stoll(req.get_param_value("now")));
+    server.Delete(
+        R"(/v1/notifications/([^/]+))",
+        [&](const httplib::Request& req, httplib::Response& res) {
+            const std::string id = req.matches[1].str();
+            if (!service.cancel(id)) {
+                writeJson(res, 404, {{"error", "notification not found"}});
+                return;
             }
-            if (req.has_param("limit")) {
-                limit = static_cast<std::size_t>(std::stoul(req.get_param_value("limit")));
-            }
-        } catch (const std::exception&) {
-            writeJson(res, 400, {{"error", "now/limit must be integers"}});
-            return;
-        }
+            res.status = 204;
+        });
 
-        const auto due = service.due(now, limit);
-        json body = json::array();
-        for (const auto& n : due) {
-            body.push_back(dueToJson(n));
-        }
-        writeJson(res, 200, body);
-    });
+    server.Post(
+        R"(/v1/notifications/([^/]+)/sent)",
+        [&](const httplib::Request& req, httplib::Response& res) {
+            const std::string id = req.matches[1].str();
+            if (!service.markSent(id)) {
+                writeJson(
+                    res, 404,
+                    {{"error", "notification not found or cancelled"}});
+                return;
+            }
+            writeJson(res, 200, {{"ok", true}});
+        });
+
+    server.Get(
+        "/v1/due",
+        [&](const httplib::Request& req, httplib::Response& res) {
+            std::int64_t now = unixNow();
+            std::size_t limit = 100;
+            try {
+                if (req.has_param("now")) {
+                    now = static_cast<std::int64_t>(
+                        std::stoll(req.get_param_value("now")));
+                }
+                if (req.has_param("limit")) {
+                    limit = static_cast<std::size_t>(
+                        std::stoul(req.get_param_value("limit")));
+                }
+            } catch (const std::exception&) {
+                writeJson(res, 400, {{"error", "now/limit must be integers"}});
+                return;
+            }
+
+            const auto due = service.due(now, limit);
+            json body = json::array();
+            for (const auto& n : due) {
+                body.push_back(dueToJson(n));
+            }
+            writeJson(res, 200, body);
+        });
 
     std::cout << "notification_service listening on " << kDefaultHost << ":"
-              << kDefaultPort << "\n";
+        << kDefaultPort << "\n";
     if (!server.listen(kDefaultHost, kDefaultPort)) {
-        std::cerr << "failed to bind " << kDefaultHost << ":" << kDefaultPort << "\n";
+        std::cerr << "failed to bind " << kDefaultHost << ":" << kDefaultPort
+            << "\n";
         return EXIT_FAILURE;
     }
     return EXIT_SUCCESS;

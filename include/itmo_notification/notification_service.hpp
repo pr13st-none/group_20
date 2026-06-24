@@ -2,12 +2,12 @@
 
 #include <cstddef>
 #include <cstdint>
-#include <mutex>
 #include <optional>
+#include <set>
+#include <shared_mutex>
 #include <string>
 #include <string_view>
 #include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
 #include "itmo_notification/due_notification.hpp"
@@ -15,13 +15,14 @@
 
 namespace itmo_notification {
 
-// In-memory планировщик уведомлений. API менять нельзя: он соответствует HTTP-ручкам.
+// In-memory планировщик уведомлений. API менять нельзя: он соответствует
+// HTTP-ручкам.
 class NotificationService {
 public:
     NotificationService();
     ~NotificationService();
 
-    NotificationService(const NotificationService&)            = delete;
+    NotificationService(const NotificationService&) = delete;
     NotificationService& operator=(const NotificationService&) = delete;
 
     // POST /v1/notifications
@@ -40,12 +41,35 @@ public:
     std::vector<DueNotification> due(std::int64_t now, std::size_t limit) const;
 
 private:
-    std::unordered_map<std::string, Notification> notifications_;
-    std::vector<std::string>                      schedule_;
-    std::unordered_set<std::string>               cancelled_;
-    std::unordered_set<std::string>               sent_;
+    struct DueIndexEntry {
+        std::int64_t send_at{};
+        int priority{};
+        std::int64_t created_at{};
+        std::string id;
+    };
 
-    mutable std::mutex mu_;
+    struct DueIndexEntryLess {
+        bool operator()(const DueIndexEntry& lhs,
+                        const DueIndexEntry& rhs) const;
+    };
+
+    using DueIndex = std::set<DueIndexEntry, DueIndexEntryLess>;
+
+    struct NotificationRecord {
+        Notification notification;
+        DueIndex::iterator due_index_it{};
+        bool in_due_index{false};
+    };
+
+    static DueIndexEntry MakeDueIndexEntry(const Notification& notification);
+
+    void IndexPending(NotificationRecord& record);
+    void UnindexIfPresent(NotificationRecord& record);
+
+    std::unordered_map<std::string, NotificationRecord> notifications_;
+    DueIndex due_index_;
+
+    mutable std::shared_mutex mu_;
 };
 
 }  // namespace itmo_notification

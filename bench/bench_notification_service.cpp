@@ -18,32 +18,36 @@ namespace {
 using json = nlohmann::json;
 
 const char* dataPath() {
-    if (const char* p = std::getenv("ITMO_NOTIFICATION_DATA")) return p;
+    if (const char* p = std::getenv("ITMO_NOTIFICATION_DATA")) {
+        return p;
+    }
     return ITMO_NOTIFICATION_DEFAULT_DATA;
 }
 
 const char* metaPath() {
-    if (const char* p = std::getenv("ITMO_NOTIFICATION_META")) return p;
+    if (const char* p = std::getenv("ITMO_NOTIFICATION_META")) {
+        return p;
+    }
     return ITMO_NOTIFICATION_DEFAULT_META;
 }
 
 struct Dataset {
     std::vector<itmo_notification::Notification> notifications;
-    std::vector<std::string>                    sample_ids;
-    std::int64_t                                due_now{};
+    std::vector<std::string> sample_ids;
+    std::int64_t due_now{};
 };
 
 itmo_notification::Notification parseNotification(const json& j) {
     itmo_notification::Notification n;
-    n.id            = j.value("id", std::string{});
-    n.user_id       = j.value("user_id", std::string{});
-    n.channel       = j.value("channel", std::string{});
-    n.recipient     = j.value("recipient", std::string{});
+    n.id = j.value("id", std::string{});
+    n.user_id = j.value("user_id", std::string{});
+    n.channel = j.value("channel", std::string{});
+    n.recipient = j.value("recipient", std::string{});
     n.template_name = j.value("template", std::string{});
-    n.payload       = j.contains("payload") ? j.at("payload").dump() : "{}";
-    n.send_at       = j.value("send_at", std::int64_t{0});
-    n.priority      = j.value("priority", 0);
-    n.created_at    = j.value("created_at", std::int64_t{0});
+    n.payload = j.contains("payload") ? j.at("payload").dump() : "{}";
+    n.send_at = j.value("send_at", std::int64_t{0});
+    n.priority = j.value("priority", 0);
+    n.created_at = j.value("created_at", std::int64_t{0});
     return n;
 }
 
@@ -53,12 +57,15 @@ const Dataset& dataset() {
         std::ifstream in(dataPath());
         if (!in) {
             std::cerr << "FATAL: cannot open dataset " << dataPath()
-                      << " — run scripts/gen_dataset.py first\n";
+                << " — run scripts/gen_dataset.py first\n";
             std::exit(1);
         }
+
         std::string line;
         while (std::getline(in, line)) {
-            if (line.empty()) continue;
+            if (line.empty()) {
+                continue;
+            }
             d.notifications.push_back(parseNotification(json::parse(line)));
         }
 
@@ -67,9 +74,10 @@ const Dataset& dataset() {
             std::cerr << "FATAL: cannot open meta " << metaPath() << "\n";
             std::exit(1);
         }
+
         const auto meta = json::parse(min);
         d.sample_ids = meta.at("sample_ids").get<std::vector<std::string>>();
-        d.due_now    = meta.at("due_now").get<std::int64_t>();
+        d.due_now = meta.at("due_now").get<std::int64_t>();
         return d;
     }();
     return ds;

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnotification_lib.a CMakeFiles/notification_lib.dir/src/notification.cpp.o CMakeFiles/notification_lib.dir/src/notification_service.cpp.o
+/usr/bin/ranlib libnotification_lib.a
